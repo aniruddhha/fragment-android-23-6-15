@@ -19,6 +19,11 @@ public class MyFragment extends Fragment {
 		
 		MyFragment frag = new MyFragment();
 		
+		Bundle bundle = new Bundle();
+		bundle.putString("KEY_DATA_MY", info);
+		
+		frag.setArguments(bundle);
+		
 		return frag;
 	}
 
@@ -29,9 +34,14 @@ public class MyFragment extends Fragment {
 		super.onCreateView(inflater, container, savedInstanceState);
 
 		rootView = inflater.inflate(R.layout.fragment_my, container, false);
-		
 		textView = (TextView) rootView.findViewById(R.id.textView);
-		textView.setText("Hello from Fragment ...");
+		
+		Bundle dataFrag = getArguments();
+		
+		if(dataFrag != null){
+		
+			textView.setText(""+dataFrag.getString("KEY_DATA_MY"));
+		}
 
 		return rootView;
 	}
